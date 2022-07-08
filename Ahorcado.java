@@ -6,17 +6,106 @@ public class Ahorcado {
         //Bienvenida
         System.out.println("\t *******************************************************  \n \t ********    Bienvenido al Juego de Ahorcado    ******** \n \t ******************************************************* \n");
         System.out.println("\t Autores: \n \t \t Melissa Arce \n \t \t Fernanda Lizano \n \t \t Paulina Vargas \n");
-        System.out.println("\t Tienes 5 intentos para adivinar la palabra \n");
+        System.out.println("\t Tienes 6 intentos para adivinar la palabra \n");
 
 
         /*INICIALIZAR VARIABLES
         * intentos > cantidad de intentos/oprtunidades de fallar
         * continuar > mientras continuar sea true, el loop se repetirá para continuar jugando hasta perder o ganar
         * secuecnia > indice para saber qué secuencia imprimir en el dibujo del ahorcado
+        * sec* > son los dibujos con las secuencias
         * */
-        int intentos = 5;
+        int intentos = 6;
         boolean continuar = true;
+        char[] fallos = {'-','-','-','-','-','-'};
+
         int secuencia = 0;
+
+        String sec0 = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/       \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|_____   \n";
+
+        String sec1 = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/      |    \n" +
+                "|     ( _ )   \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|_____   \n";
+
+        String sec2 = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/      |        \n" +
+                "|     (x_ )     \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|_____   \n";
+
+        String sec3 = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/      | \n" +
+                "|     (x_x) \n" +
+                "|        \n" +
+                "|        \n" +
+                "|        \n" +
+                "|_____   \n";
+
+        String sec4 = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/      | \n" +
+                "|     (x_x)       \n" +
+                "|     ==|==        \n" +
+                "|       |        \n" +
+                "|        \n" +
+                "|_____   \n";
+
+        String sec5 = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/      | \n" +
+                "|     (x_x)       \n" +
+                "|     ==|==      \n" +
+                "|       |        \n" +
+                "|         )     \n" +
+                "|_____   \n";
+
+        String end = "Juego del Ahorcado \n " +
+                "_ _ _ _ _ \n" +
+                "|/      | \n" +
+                "|     (x_x)       \n" +
+                "|     ==|==     \n" +
+                "|       |        \n" +
+                "|     (   )     \n" +
+                "|                \n" +
+                "|_____   \n";
+
+        String win = "  .                 .                .   . .     .  \n" +
+                "                   .                    .       .     * .      .    .     . .   \n" +
+                "  .       *                        . . . .  o.   .  + . .      .    .     . .   \n" +
+                "       Felicidades!           .   .  +  . . .\n" +
+                ".            |Has Ganado             .  .   .    .    . . .  o    .    .     . .   \n" +
+                "                  |el juego!           .     .     . +.    +  . .      .    .     . .   \n" +
+                "         *                     .       . . .  +    .  .  . .  +    .  .    . .\n" +
+                "    . .  +    .           .      . .                 .    * . . .  .  +   .\n" +
+                "           +      .           .   .      +\n" +
+                "                            .       . +  .+. .. + .  .      .    .     . .    \n" +
+                "  .                      .     . + .  . .     .      . .      .    .     . .   \n" +
+                "          o .      .    .     . .   o. . .        | /.  *   .  *  . +..  .     \n" +
+                "      *             .    . .  +    .  .       - o -.    . .  +  \n" +
+                "          .     .    .  +   . .  *  .       . / |  .    .  +   . .  *\n" +
+                "               . + .  .  .  .. +  .\n" +
+                ".      .  .  .  *   .  *  . +..  .            *\n" +
+                " .      .   . .   .   .   . .  +   .    .            ";
 
         /*SELECCIONAR PALABRA
          * crear array de posible palabras
@@ -42,45 +131,54 @@ public class Ahorcado {
         while(continuar){
 
             //imprimir intro y avance de respuesta
-            System.out.println("\t ******************************** \n \t ********    Ahorcado    ******** \n \t ******************************** \n");
+            System.out.println("\n \t ******************************** \n \t ********    Ahorcado    ******** \n \t ******************************** \n");
             System.out.printf("\t Adivinado: ");
             System.out.println(arregloRespuesta);
-            System.out.println("\t Intentos restantes: " + intentos);
+            System.out.printf("\t Letras perdidas: ");
+            System.out.println(fallos);
+            System.out.println("\t Intentos restantes: " + intentos + "\n");
 
             //imprimir secuencia
             switch(secuencia) {
                 case 0:
-                    //POR EJEMPLO
-                    System.out.println("\n \t   +---+");
-                    System.out.println("\t   |   |");
-                    System.out.println("\t       |");
-                    System.out.println("\t       |");
-                    System.out.println("\t       |");
-                    System.out.println("\t       |");
-                    System.out.println("\t ========= \n ");
+                    // Secuencia donde inicia el juego
+                    // el arte ha sido almacenado en variables para evitar que se muevan o desordenen.
+                    System.out.println(sec0);
                     break;
                 case 1:
-                    // otras secuencias
+                    // ha perdido una vida, resta un intento
+                    System.out.println(sec1);
                     break;
-                case 777: //ganar
-                    System.out.println("Ganar");
+                case 2:
+                    // ha perdido una vida, resta un intento
+                    System.out.println(sec2);
+                    break;
+                case 3:
+                    // ha perdido una vida, resta un intento
+                    System.out.println(sec3);
+                    break;
+                case 4:
+                    // ha perdido una vida, resta un intento
+                    System.out.println(sec4);
+                    break;
+                case 5:
+                    // ha perdido una vida, resta un intento
+                    System.out.println(sec5);
+                    break;
+                case 777: //ganar + se imprimen estrellitas en celebracion wooo!
+                    System.out.println(win);
                     continuar = false;
                     break;
-                case 707: //perder
-                    System.out.println("Perder");
+                case 707: //perder + se imprime el asesinado :(
+                    System.out.println(end);
                     continuar = false;
                     break;
                 default:
                     //POR EJEMPLO
-                    System.out.println("\n \n \t   +---+");
-                    System.out.println("\t   |   |");
-                    System.out.println("\t   O   |");
-                    System.out.println("\t   |   |");
-                    System.out.println("\t       |");
-                    System.out.println("\t       |");
-                    System.out.println("\t ========= \n \n");
+                    System.out.println(sec0);
                     break;
             }
+
 
             //se compara elemento por elemento de cada array
             boolean arrayIgual = true;
@@ -118,6 +216,7 @@ public class Ahorcado {
 
                 //si la letra no esta, se disminuyen los intentos y se pasa a la siguinete secuencia de dibujo
                 if(!isInArray){
+                    fallos[secuencia] = letra;
                     intentos -= 1;
                     secuencia += 1;
                 }
